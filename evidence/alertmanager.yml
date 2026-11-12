@@ -1,0 +1,66 @@
+{
+  "route": {
+    "receiver": "grouped",
+    "group_wait": "6s",
+    "group_interval": "4s",
+    "repeat_interval": "1h",
+    "routes": [
+      {
+        "receiver": "grouped",
+        "matchers": [
+          "mode=\"grouped\"",
+          "incident=\"dns\""
+        ],
+        "group_by": [
+          "mode",
+          "incident",
+          "dependency"
+        ]
+      },
+      {
+        "receiver": "per-host",
+        "matchers": [
+          "mode=\"per-host\""
+        ],
+        "group_by": [
+          "mode",
+          "incident",
+          "dependency",
+          "host"
+        ]
+      },
+      {
+        "receiver": "grouped",
+        "matchers": [
+          "mode=\"grouped\""
+        ],
+        "group_by": [
+          "mode",
+          "incident",
+          "dependency",
+          "host"
+        ]
+      }
+    ]
+  },
+  "receivers": [
+    {
+      "name": "per-host",
+      "webhook_configs": [
+        {
+          "url": "http://127.0.0.1:19094/per-host",
+          "send_resolved": true
+        }
+      ]
+    },
+    {
+      "name": "grouped",
+      "webhook_configs": [
+        {
+          "url": "http://127.0.0.1:19094/grouped",
+          "send_resolved": true
+        }
+      ]
+    }
+  ]
+}

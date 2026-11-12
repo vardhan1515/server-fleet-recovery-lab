@@ -1,0 +1,81 @@
+{
+  "groups": [
+    {
+      "name": "lab",
+      "rules": [
+        {
+          "alert": "LabIncident",
+          "expr": "lab_service_up == 0",
+          "labels": {
+            "mode": "per-host",
+            "incident": "service",
+            "dependency": "local-http"
+          }
+        },
+        {
+          "alert": "LabIncident",
+          "expr": "lab_disk_used_percent >= 80",
+          "labels": {
+            "mode": "per-host",
+            "incident": "disk",
+            "dependency": "local-scratch"
+          }
+        },
+        {
+          "alert": "LabIncident",
+          "expr": "lab_dns_up == 0",
+          "labels": {
+            "mode": "per-host",
+            "incident": "dns",
+            "dependency": "shared-dns"
+          }
+        },
+        {
+          "alert": "LabIncident",
+          "expr": "up{job=\"linux_lab\"} == 0",
+          "labels": {
+            "mode": "per-host",
+            "incident": "connectivity",
+            "dependency": "local-nic"
+          }
+        },
+        {
+          "alert": "LabIncident",
+          "expr": "lab_service_up == 0",
+          "labels": {
+            "mode": "grouped",
+            "incident": "service",
+            "dependency": "local-http"
+          }
+        },
+        {
+          "alert": "LabIncident",
+          "expr": "lab_disk_used_percent >= 80",
+          "labels": {
+            "mode": "grouped",
+            "incident": "disk",
+            "dependency": "local-scratch"
+          }
+        },
+        {
+          "alert": "LabIncident",
+          "expr": "lab_dns_up == 0",
+          "labels": {
+            "mode": "grouped",
+            "incident": "dns",
+            "dependency": "shared-dns"
+          }
+        },
+        {
+          "alert": "LabIncident",
+          "expr": "up{job=\"linux_lab\"} == 0",
+          "labels": {
+            "mode": "grouped",
+            "incident": "connectivity",
+            "dependency": "local-nic"
+          }
+        }
+      ]
+    }
+  ]
+}

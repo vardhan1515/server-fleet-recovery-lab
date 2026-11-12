@@ -1,0 +1,22 @@
+{
+  "trials": 20,
+  "alerts": {
+    "per-host": {
+      "actionable": 20,
+      "missed": 0,
+      "notifications": 25,
+      "notifications_per_incident": 1.25,
+      "median_detection_seconds": 8.96099999999933,
+      "p95_detection_seconds": 10.875
+    },
+    "grouped": {
+      "actionable": 20,
+      "missed": 0,
+      "notifications": 22,
+      "notifications_per_incident": 1.1,
+      "median_detection_seconds": 8.827999999994063,
+      "p95_detection_seconds": 10.875
+    }
+  },
+  "recovered_trials": 20
+}

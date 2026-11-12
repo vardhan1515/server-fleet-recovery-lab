@@ -1,0 +1,36 @@
+{
+  "started_utc": "2026-11-12T09:07:04.095655+00:00",
+  "finished_utc": "2026-11-12T09:08:04.271234+00:00",
+  "measurement_window_seconds": 60,
+  "observed_wall_seconds": 60.175579,
+  "hardware_events": true,
+  "simulated_hosts": 5000,
+  "expected_samples": 200000,
+  "observed_samples": 200000,
+  "expected_series": 100000,
+  "observed_series": 100000,
+  "min_samples_per_series": 2,
+  "max_samples_per_series": 2,
+  "samples_per_second": 3333.3333333333335,
+  "completeness_percent": 100.0,
+  "queries": {
+    "fleet_series": {
+      "expression": "count({__name__=~\"fleet_.+\"})",
+      "count": 2,
+      "median_ms": 82.06810000046971,
+      "p95_ms": 89.70419999968726
+    },
+    "rack_cpu_5m": {
+      "expression": "avg by (rack) (avg_over_time(fleet_cpu_percent[5m]))",
+      "count": 2,
+      "median_ms": 43.99454999656882,
+      "p95_ms": 48.50569999689469
+    },
+    "temperature_max": {
+      "expression": "max by (rack) (fleet_temperature_celsius)",
+      "count": 2,
+      "median_ms": 31.411650001246016,
+      "p95_ms": 32.26620000350522
+    }
+  }
+}

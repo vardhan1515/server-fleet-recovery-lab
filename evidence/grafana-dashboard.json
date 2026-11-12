@@ -1,0 +1,178 @@
+{
+  "uid": "fleet-incident-lab",
+  "title": "Fleet Incident and Recovery Lab",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "5s",
+  "time": {
+    "from": "now-15m",
+    "to": "now"
+  },
+  "panels": [
+    {
+      "id": 1,
+      "title": "Host reachability",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "lab-prometheus"
+      },
+      "targets": [
+        {
+          "expr": "up{job=\"linux_lab\"}",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "lab-prometheus"
+          },
+          "legendFormat": "{{host}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "min": 0
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 2,
+      "title": "HTTP service health",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 12,
+        "y": 0,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "lab-prometheus"
+      },
+      "targets": [
+        {
+          "expr": "lab_service_up",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "lab-prometheus"
+          },
+          "legendFormat": "{{host}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "min": 0
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 3,
+      "title": "Scratch filesystem usage",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 0,
+        "y": 8,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "lab-prometheus"
+      },
+      "targets": [
+        {
+          "expr": "lab_disk_used_percent",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "lab-prometheus"
+          },
+          "legendFormat": "{{host}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 4,
+      "title": "Shared DNS reachability",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 12,
+        "y": 8,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "lab-prometheus"
+      },
+      "targets": [
+        {
+          "expr": "lab_dns_up",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "lab-prometheus"
+          },
+          "legendFormat": "{{host}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "min": 0
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 5,
+      "title": "Firing alerts by routing mode",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 0,
+        "y": 16,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "lab-prometheus"
+      },
+      "targets": [
+        {
+          "expr": "sum by (mode, incident) (ALERTS{alertstate=\"firing\"})",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "lab-prometheus"
+          },
+          "legendFormat": "{{mode}} / {{incident}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "min": 0
+        },
+        "overrides": []
+      }
+    }
+  ]
+}

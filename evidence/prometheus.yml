@@ -1,0 +1,47 @@
+{
+  "global": {
+    "scrape_interval": "3s",
+    "scrape_timeout": "2s",
+    "evaluation_interval": "2s"
+  },
+  "rule_files": [
+    "rules.yml"
+  ],
+  "alerting": {
+    "alertmanagers": [
+      {
+        "static_configs": [
+          {
+            "targets": [
+              "127.0.0.1:19093"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "scrape_configs": [
+    {
+      "job_name": "linux_lab",
+      "metrics_path": "/cgi-bin/metrics",
+      "static_configs": [
+        {
+          "targets": [
+            "127.0.0.1:19100"
+          ],
+          "labels": {
+            "host": "linux-01"
+          }
+        },
+        {
+          "targets": [
+            "127.0.0.1:19101"
+          ],
+          "labels": {
+            "host": "linux-02"
+          }
+        }
+      ]
+    }
+  ]
+}
